@@ -5,7 +5,7 @@
 
 /**
  * The ALU. Computes one of the following functions:
- * x+y, x-y, y–x, 0, 1, -1, x, y, -x, -y, !x, !y,
+ * x+y, x-y, yâ€“x, 0, 1, -1, x, y, -x, -y, !x, !y,
  * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs.
  * Which function to compute is determined by 6 input bits 
  * denoted zx, nx, zy, ny, f, no.
@@ -68,7 +68,7 @@ CHIP ALU {
     Or8Way(in=out7, out=any7);
     Or8Way(in=out15, out=any15);
     Or(a=any7, b=any15, out=any);
-    Xor(a=any, b=true, out=zr);
+    Not(in=any, out=zr);
 
     // determine if the first bit is a 1, and thus negative
     And(a=negative, b=true, out=ng);
